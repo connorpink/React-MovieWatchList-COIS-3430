@@ -1,8 +1,8 @@
 // import { createBrowserRouter } from "react-router-dom";
 import Home from './Home';
 import Error from './Error';
-// import Directors from "./Directors";
-// import Actors from "./Actors";
+import CompletedWatchList from "../CompletedWatchList";
+import WatchList from "../WatchList";
 import Movie from "./Movie";
 
 const routes = [
@@ -11,15 +11,14 @@ const routes = [
         element: <Home />,
         errorElement: <Error />
     },
-    // ,
-    // {
-    //     path: '/directors',
-    //     element: <Directors />,
-    // },
-    // {
-    //     path: '/actors',
-    //     element: <Actors />,
-    // },
+    {
+        path: '/watchList',
+        element: <WatchList />,
+    },
+    {
+        path: '/completedWatchList',
+        element: <CompletedWatchList />,
+    },
     {
         path: '/movie/:movieId',
         element: <Movie />,
