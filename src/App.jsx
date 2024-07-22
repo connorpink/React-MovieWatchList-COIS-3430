@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import MovieGrid from './components/MovieGrid';
 
 function App() {
   const [movieData, setMovieData] = useState([]);
@@ -16,13 +17,9 @@ function App() {
       {error ? (
         <p>Error: {error.message}</p>
       ) : (
-        <ul>
-          {movieData.map((movie, index) => (
-            <li key={index}>
-              Movie ID: {movie.movieID}, Title: {movie.title}
-            </li>
-          ))}
-        </ul>
+        <div>
+          <MovieGrid movies={movieData} />
+        </div>
       )}
     </div>
   );
