@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import NavBar from "./NavBar";
-import MovieGrid from './MovieGrid';
+import NavBar from "../NavBar";
+import MovieGrid from '../MovieGrid';
 
 function CompletedWatchList() {
 

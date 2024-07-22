@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import NavBar from "./NavBar";
-import WatchListCard from "./WatchListCard";
+import NavBar from "../NavBar";
+import WatchListCard from "../WatchListCard";
 function WatchList() {
 
     const [watchListData, setWatchListData] = useState([])

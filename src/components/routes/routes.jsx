@@ -1,8 +1,8 @@
 // import { createBrowserRouter } from "react-router-dom";
 import Home from './Home';
 import Error from './Error';
-import CompletedWatchList from "../CompletedWatchList";
-import WatchList from "../WatchList";
+import CompletedWatchList from "./CompletedWatchList";
+import WatchList from "./WatchList";
 import Movie from "./Movie";
 
 const routes = [
