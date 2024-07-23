@@ -19,9 +19,9 @@ function CompletedWatchList() {
                 setError({ message: "HTTP error! Status code is: " + response.status });
                 return;
             }
-            const watchList = await response.json();
+            const completedWatchList = await response.json();
 
-            const movieList = await Promise.all(watchList.map(async element => {
+            const movieList = await Promise.all(completedWatchList.map(async element => {
                 const movieResponse = await fetch(`https://loki.trentu.ca/~connorpink/3430/assn/cois-3430-2024su-a2-BigBeill/api/movies/${element.movieID}`);
                 if (!movieResponse.ok) {
                     setError({ message: "HTTP error! Status code is: " + movieResponse.status });
