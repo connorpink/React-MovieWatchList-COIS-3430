@@ -4,6 +4,7 @@ import Error from './Error';
 import CompletedWatchList from "./CompletedWatchList";
 import WatchList from "./WatchList";
 import Movie from "./Movie";
+import Profile from "../Profile";
 
 const routes = [
     {
@@ -22,6 +23,10 @@ const routes = [
     {
         path: '/movie/:movieId',
         element: <Movie />,
+    },
+    {
+        path: '/profile',
+        element: <Profile />,
     },
 ];
 

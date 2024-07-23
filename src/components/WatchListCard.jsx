@@ -12,8 +12,8 @@ function WatchListCard(props) {
 
                 Edit Entry
             </Link>
-            <p>{entry.notes}</p>
-            <p>{entry.priority}</p>
+            <p>priority: {entry.priority}</p>
+            <p>notes: {entry.notes}</p>
 
         </div>
     );
