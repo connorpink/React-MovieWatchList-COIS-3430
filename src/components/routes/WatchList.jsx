@@ -6,31 +6,32 @@ function WatchList() {
     const [watchListData, setWatchListData] = useState([])
     const [error, setError] = useState(null);
 
-    // define a function called getMovie that runs async and takes a movie id as a parameter
-    const getMovie = async (movieId) => {
-        // call the api to get the movie id from the movie name
-        let movie;
-        await fetch(`https://loki.trentu.ca/~connorpink/3430/assn/cois-3430-2024su-a2-BigBeill/api/movies/${movieId}`)
-            .then(response => response.json())
-            .then(data => {
-                movie = data.results[0];
-            })
-        return movie
+    async function getWatchList() {
+
+        const getRequest = {
+            method: 'GET',
+            headers: { "X-API-KEY": 'test' }
+        }
+
+        const response = await fetch(new Request('https://loki.trentu.ca/~connorpink/3430/assn/cois-3430-2024su-a2-BigBeill/api/towatchlist/entries', getRequest));
+        const watchList = await response.json();
+
+        const movieList = await Promise.all(watchList.map(async element => {
+            const movieResponse = await fetch(`https://loki.trentu.ca/~connorpink/3430/assn/cois-3430-2024su-a2-BigBeill/api/movies/${element.movieID}`);
+            const movieData = await movieResponse.json();
+            return {
+                watchData: element,
+                movieData: movieData[0]
+            };
+        }));
+
+        setWatchListData(movieList)
     }
 
     useEffect(() => {
-        fetch(new Request('https://loki.trentu.ca/~connorpink/3430/assn/cois-3430-2024su-a2-BigBeill/api/towatchlist/entries', {
-            method: 'GET',
-            headers: {
-                "X-API-KEY": 'test',
-            }
-        }))
-            .then(response => response.json())
-            .then(data => setWatchListData(data))
-            .catch(error => setError(error));
+        getWatchList()
     }, []);
 
-    // console.log(watchListData);
     return (
         <>
             <header>
@@ -44,7 +45,7 @@ function WatchList() {
                 ) : (
                     <div>
                         {watchListData.map((entry, index) => (
-                            <WatchListCard key={index} entry={entry} movie={getMovie(entry.movieID)} />
+                            <WatchListCard key={index} entry={entry.watchData} movie={entry.movieData} />
                         ))}
                     </div>
                 )}
