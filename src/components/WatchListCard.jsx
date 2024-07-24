@@ -8,6 +8,7 @@ function WatchListCard(props) {
     return (
         <div className="MovieCard">
             <h2>{movie.title}</h2>
+            <p>Movie ID: {entry.movieID}</p>
             <Link to={`/entry/${entry.movieID}`} state={entry}>
 
                 Edit Entry
