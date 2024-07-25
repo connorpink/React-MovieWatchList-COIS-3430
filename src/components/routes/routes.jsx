@@ -5,6 +5,7 @@ import CompletedWatchList from "./CompletedWatchList";
 import WatchList from "./WatchList";
 import Movie from "./Movie";
 import Profile from "../Profile";
+import WatchListEntry from './WatchListEntry';
 
 const routes = [
     {
@@ -15,6 +16,10 @@ const routes = [
     {
         path: '/watchList',
         element: <WatchList />,
+    },
+    {
+        path: '/watchListEntry/:movieId',
+        element: <WatchListEntry />,
     },
     {
         path: '/completedWatchList',
