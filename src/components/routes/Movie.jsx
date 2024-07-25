@@ -30,7 +30,7 @@ function Movie() {
       }
       const putResponse = await response.json();
 
-      setSuccessMessage(`${movie.title} added to watch list`);
+      setSuccessMessage(`${movie.title} : ${putResponse.message}`);
     } catch (error) {
       setError(error);
     }
