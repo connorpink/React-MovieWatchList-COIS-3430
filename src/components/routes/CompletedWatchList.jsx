@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import NavBar from "../NavBar";
 import CompletedWatchListCard from '../CompletedWatchListCard';
+import "../../styles/MovieGrid.css";
+
 
 function CompletedWatchList() {
 
@@ -55,11 +57,11 @@ function CompletedWatchList() {
                 ) : completedWatchListData === null ? (
                     <p>Loading...</p>
                 ) : (
-                    <div>
+                    <section className="MovieGrid">
                         {completedWatchListData.map((entry, index) => (
                             <CompletedWatchListCard key={index} entry={entry.watchData} movie={entry.movieData} />
                         ))}
-                    </div>
+                    </section>
                 )}
             </main>
         </>
