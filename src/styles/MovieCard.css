@@ -1,10 +1,11 @@
 .MovieCard {
-  box-sizing: border-box;
+  margin: 0rem auto;
+  padding: 1em;
   width: 20em;
-  background-color: var(--center-color);
+  box-sizing: border-box;
+  background-color: white;
   border: 0.2em solid var(--border-color);
   border-radius: 0.75em;
-  padding: 1em;
 }
 
 .MovieCard h3 {
