@@ -1,7 +1,6 @@
 import { useState } from "react";
 import NavBar from "../NavBar";
-import { useParams } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 function Movie() {
   const location = useLocation();
