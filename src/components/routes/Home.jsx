@@ -1,17 +1,22 @@
 import { useEffect, useState } from "react";
 import NavBar from "../NavBar";
 import MovieGrid from '../MovieGrid';
+import SearchBar from "../searchBar";
 
 function Home() {
 
     const [movieData, setMovieData] = useState([])
+    const [filteredMovies, setFilteredMovies] = useState([]);
     const [error, setError] = useState(null);
 
     useEffect(() => {
         fetch('https://loki.trentu.ca/~connorpink/3430/assn/cois-3430-2024su-a2-BigBeill/api/movies')
-            .then(response => response.json())
-            .then(data => setMovieData(data))
-            .catch(error => setError(error));
+        .then(response => response.json())
+        .then(data => {
+            setMovieData(data)
+            setFilteredMovies(data)
+        })
+        .catch(error => setError(error));
     }, []);
 
     return (
@@ -26,7 +31,8 @@ function Home() {
                     <p>Error: {error.message}</p>
                 ) : (
                     <div>
-                        <MovieGrid movies={movieData} />
+                        <SearchBar movies={movieData} setMovies={setFilteredMovies} />
+                        <MovieGrid movies={filteredMovies}/>
                     </div>
                 )}
 
