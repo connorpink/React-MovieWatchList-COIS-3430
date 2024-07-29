@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import NavBar from "./NavBar";
-import UserPin from "./UserPin";
+import NavBar from "../NavBar";
+import UserPin from "../UserPin";
 
 function Profile() {
     const [profileData, setProfileData] = useState(null);
