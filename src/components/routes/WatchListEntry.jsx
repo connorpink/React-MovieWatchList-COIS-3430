@@ -125,16 +125,8 @@ function WatchListEntry() {
                             <form onSubmit={handleSubmit}>
                                 <label >Current Watch priority: </label>
                                 <select value={priority} onChange={(event) => setPriority(event.target.value)}>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
+                                    {[...Array(10).keys()].map((rating) => <option key={rating + 1} value={rating + 1}>{rating + 1}</option>)}
+
                                 </select>
                                 <button type="submit">Update Priority</button>
                                 {error ? (
@@ -154,16 +146,8 @@ function WatchListEntry() {
                             <form onSubmit={handleWatched}>
                                 <label >Provide a rating </label>
                                 <select value={rating} onChange={(event) => setRating(event.target.value)}>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
+                                    {[...Array(10).keys()].map((rating) => <option key={rating + 1} value={rating + 1}>{rating + 1}</option>)}
+
                                 </select>
                                 <button type="submit">Mark as Watched</button>
 
