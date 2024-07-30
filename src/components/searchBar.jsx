@@ -16,8 +16,10 @@ export default function SearchBar({movies, setMovies}) {
     }
 
     // apply the rating
-    if (rating !== null && !isNaN(parseInt(rating))) { // Check if the rating is a number
-      filteredProps = filteredProps.filter((movie) => parseInt(movie.vote_average) >= parseInt(rating));
+    if (rating !== null && !isNaN(parseInt(rating))) {
+      filteredProps = filteredProps.filter((movie) => {
+        return parseInt(movie.vote_average) >= parseInt(rating)
+      });
     }
 
     // return results to parent
