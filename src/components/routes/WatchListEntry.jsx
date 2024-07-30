@@ -11,14 +11,15 @@ function WatchListEntry() {
     const navigate = useNavigate();
 
     const location = useLocation();
-    const entry = location.state;
-    const movie = entry.movie;
+    const movie = location.state;
+
+    console.log(movie)
 
     const [error, setError] = useState(null);
     const [successMessage, setSuccessMessage] = useState(null);
-    const [priority, setPriority] = useState(entry.priority);
+    const [priority, setPriority] = useState(movie.additionalInfo[1].details);
     const [rating, setRating] = useState(1);
-    const [notes, setNotes] = useState(entry.notes);
+    const [notes, setNotes] = useState(movie.additionalInfo[2].details);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -146,9 +147,9 @@ function WatchListEntry() {
                 <NavBar />
             </header>
             <main>
-                <MovieCard key={1} movie={movie} />
+                <MovieCard movie={movie} />
                 <div className="MovieCard">
-                    {entry && (
+                    {movie && (
                         <>
 
 

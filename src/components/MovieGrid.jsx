@@ -17,20 +17,20 @@ movies: array[]
 (will assume all data is general data)
 }]
 
-button: {
+list: {
     name: what the button will display
-    buttonHandler: function that will run when button is clicked
+    location: function that will run when button is clicked
 }
 
 button will be applied to every card
 */
 
-export default function MovieGrid({movies, button}) {
+export default function MovieGrid({movies, link}) {
 
     return (
         <section className="MovieGrid">
             {movies.map((movie, index) => (
-                <MovieCard key={index} movie={movie} button={button}/>
+                <MovieCard key={index} movie={movie} link={link}/>
             ))}
         </section>
     )

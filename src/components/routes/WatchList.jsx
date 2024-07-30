@@ -49,6 +49,11 @@ function WatchList() {
         getWatchList()
     }, []);
 
+    const link = {
+        name: 'Edit Entry',
+        location: '/watchListEntry'
+    }
+
     return (
         <>
             <header>
@@ -60,7 +65,7 @@ function WatchList() {
                 ) : watchListData === null ? (
                     <p>Loading...</p>
                 ) : (
-                    <MovieGrid movies={watchListData}/>
+                    <MovieGrid movies={watchListData} link={link}/>
                 )}
             </main>
         </>

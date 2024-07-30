@@ -13,20 +13,19 @@ generalInfo: {
     }]
 }
 
-button: {
-    name: what the button will display
-    buttonHandler: function that will run when button is clicked
+link: {
+    name: name of the link
+    location: where you want the link to redirect the user (component will automatically send the movieId with the redirect)
 }
 */
 
-function MovieCard({movie, button}) {
+function MovieCard({movie, link}) {
 
     return (
         <div className="MovieCard">
 
             {/* general information that every movie card should display*/}
             <h2>{movie.title}</h2>
-            <Link to={`/movie/${movie.movieID}`} state={movie}> Movie Details </Link>
             <p>{new Date(movie.release_date).toLocaleDateString()} | {Math.round(movie.vote_average * 10) / 10}/10 | {movie.runtime} minutes</p>
             <p>{movie.description}</p>
 
@@ -37,8 +36,11 @@ function MovieCard({movie, button}) {
                 ))
             )}
 
-            {/* optional button at bottom of card */}
-            {button && <button onClick={() => {button.clickHandler(movie)}}>{button.name}</button> }
+            {/* link to more information */}
+            <Link to={`/movie/${movie.movieID}`} state={movie}> Movie Details </Link>
+
+            {/* optional additional link at bottom of card */}
+            {link && <Link to={`${link.location}/${movie.movieID}`} state={movie}> {link.name} </Link> }
         </div>
     );
 }

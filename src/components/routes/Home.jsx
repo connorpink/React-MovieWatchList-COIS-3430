@@ -32,7 +32,7 @@ function Home() {
                 ) : (
                     <div>
                         <SearchBar movies={movieData} setMovies={setFilteredMovies} />
-                        <MovieGrid movies={filteredMovies}/>
+                        <MovieGrid movies={filteredMovies} />
                     </div>
                 )}
 
