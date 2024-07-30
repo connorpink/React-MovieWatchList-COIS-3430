@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import NavBar from "../NavBar";
-import WatchListCard from "../WatchListCard";
 import "../../styles/MovieGrid.css";
-
+import MovieGrid from "../MovieGrid";
 
 function WatchList() {
 
@@ -30,9 +29,13 @@ function WatchList() {
                     return null;
                 }
                 const movieData = await movieResponse.json();
-                return {
-                    watchData: element,
-                    movieData: movieData[0]
+
+                return {...movieData[0],
+                    additionalInfo: [
+                        { name: 'Movie ID', details: movieData[0].movieID },
+                        { name: 'Priority', details: element.priority },
+                        { name: 'Notes', details: element.notes}
+                    ]
                 };
             }));
 
@@ -57,11 +60,7 @@ function WatchList() {
                 ) : watchListData === null ? (
                     <p>Loading...</p>
                 ) : (
-                    <section className="MovieGrid">
-                        {watchListData.map((entry, index) => (
-                            <WatchListCard key={index} entry={entry.watchData} movie={entry.movieData} />
-                        ))}
-                    </section>
+                    <MovieGrid movies={watchListData}/>
                 )}
             </main>
         </>
