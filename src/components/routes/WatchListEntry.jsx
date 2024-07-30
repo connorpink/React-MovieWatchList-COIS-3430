@@ -2,6 +2,8 @@ import { useState } from "react";
 import NavBar from "../NavBar";
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import '../../styles/MovieCard.css';
+
 
 import MovieCard from '../MovieCard';
 
@@ -29,6 +31,33 @@ function WatchListEntry() {
                 })
             }
             const response = await fetch(new Request(`https://loki.trentu.ca/~connorpink/3430/assn/cois-3430-2024su-a2-BigBeill/api/towatchlist/entries/${movie.movieID}/priority`, patchRequest));
+            if (!response.ok) {
+                setError({ message: "HTTP error! Status code is: " + response.status });
+                return;
+            }
+            const patchResponse = await response.json();
+
+            setSuccessMessage(`${patchResponse.message}`);
+
+        } catch (error) {
+            setError(error);
+        }
+
+        // Update the component state with the new priority
+        setPriority(event.target.value);
+    };
+
+    const handleNotesSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            const patchRequest = {
+                method: 'PATCH',
+                headers: { "X-API-KEY": 'test' },
+                body: new URLSearchParams({
+                    'notes': `${notes}`
+                })
+            }
+            const response = await fetch(new Request(`https://loki.trentu.ca/~connorpink/3430/assn/cois-3430-2024su-a2-BigBeill/api/towatchlist/entries/${movie.movieID}/notes`, patchRequest));
             if (!response.ok) {
                 setError({ message: "HTTP error! Status code is: " + response.status });
                 return;
@@ -117,10 +146,11 @@ function WatchListEntry() {
                 <NavBar />
             </header>
             <main>
-                <div className="movie-container">
+                <MovieCard key={1} movie={movie} />
+                <div className="MovieCard">
                     {entry && (
                         <>
-                            <MovieCard key={1} movie={movie} />
+
 
                             <form onSubmit={handleSubmit}>
                                 <label >Current Watch priority: </label>
@@ -129,17 +159,14 @@ function WatchListEntry() {
 
                                 </select>
                                 <button type="submit">Update Priority</button>
-                                {error ? (
-                                    <span>Error: {error.message}</span>
-                                ) : successMessage ? (
-                                    <span>{successMessage}</span>
-                                ) : (
-                                    <span />
-                                )}
+
+                            </form>
+                            <form onSubmit={handleNotesSubmit}>
+
                                 <p>notes: </p>
 
                                 <textarea value={notes} onChange={(event) => setNotes(event.target.value)}></textarea>
-
+                                <button type="submit">Update Notes</button>
 
                             </form>
                             <br />
@@ -157,6 +184,13 @@ function WatchListEntry() {
                                 <button type="submit">Remove Entry from List</button>
 
                             </form>
+                            {error ? (
+                                <span style={{ color: "red" }}>Error: {error.message}</span>
+                            ) : successMessage ? (
+                                <span style={{ color: "green" }}>{successMessage}</span>
+                            ) : (
+                                <span />
+                            )}
 
                         </>
                     )}
