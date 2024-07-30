@@ -19,7 +19,7 @@ button: {
 }
 */
 
-function MovieCard({movie, additionalInfo, button}) {
+function MovieCard({movie, button}) {
 
     return (
         <div className="MovieCard">
@@ -31,9 +31,11 @@ function MovieCard({movie, additionalInfo, button}) {
             <p>{movie.description}</p>
 
             {/* additional information that the parent component may want to have displayed */}
-            { additionalInfo && additionalInfo.map((info, index) => (
-                <p key={index}><b>{info.name}:</b> {info.details}</p>
-            ))}
+            {movie.additionalInfo && movie.additionalInfo.length > 0 && (
+                movie.additionalInfo.map((info, index) => (
+                    <p key={index}><b>{info.name}:</b> {info.details}</p>
+                ))
+            )}
 
             {/* optional button at bottom of card */}
             {button && <button onClick={() => {button.clickHandler(movie)}}>{button.name}</button> }
