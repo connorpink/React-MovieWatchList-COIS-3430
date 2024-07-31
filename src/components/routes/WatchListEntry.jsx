@@ -146,7 +146,9 @@ function WatchListEntry() {
                 <NavBar />
             </header>
             <main>
-                <div className="watchListEntry">
+                <h1 className="center">Edit Entry</h1>
+
+                <div className="settingsPage">
 
                     <MovieCard movie={movie} />
                     <div className="MovieCard">
