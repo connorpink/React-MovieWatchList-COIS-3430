@@ -6,6 +6,7 @@ import WatchList from "./WatchList";
 import Movie from "./Movie";
 import Profile from "./Profile";
 import WatchListEntry from './WatchListEntry';
+import Entry from './Entry';
 //import Login from './Login';
 
 const routes = [
@@ -33,6 +34,10 @@ const routes = [
     {
         path: '/profile',
         element: <Profile />,
+    },
+    {
+        path: '/entry/:movieId',
+        element: <Entry />,
     },
     /*
     {
