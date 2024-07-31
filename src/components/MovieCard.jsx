@@ -22,7 +22,7 @@ link: {
 function MovieCard({ movie, link }) {
 
     return (
-        <div className="MovieCard" style={{ width: "auto" }}>
+        <div className="MovieCard">
 
             {/* general information that every movie card should display*/}
             <h2>{movie.title}</h2>

@@ -4,7 +4,6 @@ import { useLocation, useParams } from 'react-router-dom';
 
 import '../../styles/UserCard.css';
 
-import MovieCard from "../MovieCard";
 
 function Movie() {
   const location = useLocation();
@@ -38,11 +37,6 @@ function Movie() {
       setError(error);
     }
   }
-
-  const button = {
-    name: "Quick add to watch list",
-    location: ""
-  }
   return (
     <>
       <header>
@@ -52,24 +46,24 @@ function Movie() {
 
 
         {movie && (
-            <div className="MovieCard detailed" style={{ width: "auto" }}>
+          <div className="MovieCard detailed">
 
-              {/* general information that every movie card should display*/}
-              <h2>{movie.title}</h2>
-              <p>{new Date(movie.release_date).toLocaleDateString()} | {Math.round(movie.vote_average * 10) / 10}/10 | {movie.runtime} minutes</p>
-              <p>{movie.description}</p>
-              <p><b>Vote Count: </b>{movie.vote_count}</p>
+            {/* general information that every movie card should display*/}
+            <h2>{movie.title}</h2>
+            <p>{new Date(movie.release_date).toLocaleDateString()} | {Math.round(movie.vote_average * 10) / 10}/10 | {movie.runtime} minutes</p>
+            <p>{movie.description}</p>
+            <p><b>Vote Count: </b>{movie.vote_count}</p>
 
-      
-              <button onClick={quickAdd}>quick add to watch list</button>
-                {error ? (
-                  <span>Error: {error.message}</span>
-                ) : successMessage ? (
-                  <span>{successMessage}</span>
-                ) : (
-                  <span />
-                )}
-            </div>
+
+            <button onClick={quickAdd}>quick add to watch list</button>
+            {error ? (
+              <span>Error: {error.message}</span>
+            ) : successMessage ? (
+              <span>{successMessage}</span>
+            ) : (
+              <span />
+            )}
+          </div>
         )}
       </main >
     </>
