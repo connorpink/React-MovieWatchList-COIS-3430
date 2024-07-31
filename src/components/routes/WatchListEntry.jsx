@@ -2,7 +2,6 @@ import { useState } from "react";
 import NavBar from "../NavBar";
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import '../../styles/extra.css';
 
 
 import MovieCard from '../MovieCard';
