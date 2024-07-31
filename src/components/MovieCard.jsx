@@ -36,11 +36,13 @@ function MovieCard({movie, link}) {
                 ))
             )}
 
-            {/* link to more information */}
-            <Link to={`/movie/${movie.movieID}`} state={movie}> Movie Details </Link>
+            <div className='links'>
+                {/* link to more information */}
+                <Link to={`/movie/${movie.movieID}`} state={movie}> Movie Details </Link>
 
-            {/* optional additional link at bottom of card */}
-            {link && <Link to={`${link.location}/${movie.movieID}`} state={movie}> {link.name} </Link> }
+                {/* optional additional link at bottom of card */}
+                {link && <Link to={`${link.location}/${movie.movieID}`} state={movie}> {link.name} </Link> }
+            </div>
         </div>
     );
 }

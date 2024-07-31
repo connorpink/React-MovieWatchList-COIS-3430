@@ -1,6 +1,8 @@
 .MovieCard {
+  position: relative;
   margin: 0rem auto;
   padding: 1em;
+  padding-bottom: 2em;
   width: 20em;
   box-sizing: border-box;
   background-color: white;
@@ -11,4 +13,31 @@
 .MovieCard h3 {
   font-size: 1.5rem;
   text-align: center;
+}
+
+.links {
+  position: absolute;
+  bottom: 1em;
+  width: calc(100% - 2em);
+  display: flex;
+  gap: .6rem;
+}
+
+.links a{
+  width: 100%;
+  border: .09rem solid black;
+  background-color: lightblue;
+  padding: .06rem;
+  border-radius: .15rem;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+}
+
+.MovieCard p {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Number of lines to show */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

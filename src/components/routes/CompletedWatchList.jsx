@@ -30,8 +30,6 @@ function CompletedWatchList() {
                     return null;
                 }
                 const movieData = await movieResponse.json();
-                console.log(element);
-                console.log(movieData);
                 return { ...movieData[0],
                     additionalInfo: [
                     { name: 'Rating', details: element.rating },
