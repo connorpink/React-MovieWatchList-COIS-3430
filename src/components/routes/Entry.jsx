@@ -1,4 +1,5 @@
 // page for editing completed watch list movies
+import { useNavigate } from 'react-router-dom';
 
 import { useState } from "react";
 import NavBar from "../NavBar";
@@ -9,6 +10,7 @@ import '../../styles/MovieCard.css';
 import MovieCard from '../MovieCard';
 
 function Entry() {
+  const navigate = useNavigate();
 
   const location = useLocation();
   const movie = location.state;
@@ -42,6 +44,28 @@ function Entry() {
     setTimesWatched(timesWatched + 1)
   }
 
+  const handleDelete = async (event) => {
+    event.preventDefault();
+    try {
+      const deleteRequest = {
+        method: 'DELETE',
+        headers: { "X-API-KEY": "test" }
+      }
+      const response = await fetch(new Request(`https://loki.trentu.ca/~connorpink/3430/assn/cois-3430-2024su-a2-BigBeill/api/completedwatchlist/entries/${movie.movieID}/`, deleteRequest));
+      if (!response.ok) {
+        console.log({ message: "HTTP error! Status code is: " + response.status });
+        return;
+      }
+      const deleteResponse = await response.json();
+      console.log(`${deleteResponse.message}`)
+      //redirect back to the watchlist page
+      navigate('/completedWatchList/');
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <>
       <header>
@@ -65,7 +89,11 @@ function Entry() {
             <p>Movie watched: {timesWatched} times</p>
             <p>Movie Last Watched: {lastWatched} </p>
             <button className="styledButton" onClick={() => handleWatched()}>Watched Again</button>
-            <button className="lastButton" onClick={() => handleSubmit()}>Save Changes</button>
+            <button className="styledButton" onClick={() => handleSubmit()}>Save Changes</button>
+            <form onSubmit={handleDelete}>
+              <button className="lastButton" type="submit">Remove Entry from List</button>
+
+            </form>
 
           </div>
 
