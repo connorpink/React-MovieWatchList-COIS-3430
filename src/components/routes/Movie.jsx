@@ -9,11 +9,6 @@ import MovieCard from "../MovieCard";
 function Movie() {
   const location = useLocation();
   const movie = location.state;
-  movie.additionalInfo = [
-    {
-      name: "vote count", details: movie.vote_count
-    }
-  ]
   const params = useParams();
 
   const [error, setError] = useState(null);
@@ -54,13 +49,19 @@ function Movie() {
         <NavBar />
       </header>
       <main>
-        <div className="UserCard">
 
-          {movie && (
-            <>
-              <MovieCard movie={movie} button={button} />
-              <div className="buttonContainer">
-                <button onClick={quickAdd}>quick add to watch list</button>
+
+        {movie && (
+            <div className="MovieCard detailed" style={{ width: "auto" }}>
+
+              {/* general information that every movie card should display*/}
+              <h2>{movie.title}</h2>
+              <p>{new Date(movie.release_date).toLocaleDateString()} | {Math.round(movie.vote_average * 10) / 10}/10 | {movie.runtime} minutes</p>
+              <p>{movie.description}</p>
+              <p><b>Vote Count: </b>{movie.vote_count}</p>
+
+      
+              <button onClick={quickAdd}>quick add to watch list</button>
                 {error ? (
                   <span>Error: {error.message}</span>
                 ) : successMessage ? (
@@ -68,11 +69,8 @@ function Movie() {
                 ) : (
                   <span />
                 )}
-              </div>
-            </>
-          )}
-
-        </div>
+            </div>
+        )}
       </main >
     </>
   );

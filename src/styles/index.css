@@ -48,11 +48,13 @@ main {
 }
 
 .settingsPage {
-  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40.6em;
   justify-content: center;
   display: flex;
   margin-top: 1.5rem;
-  gap: .6rem;
+  gap: .6em;
 }
 
 button {
