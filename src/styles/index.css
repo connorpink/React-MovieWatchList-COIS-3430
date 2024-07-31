@@ -73,3 +73,7 @@ button:hover {
   bottom: 1em;
   left: 1em;
 }
+
+.topMargin{
+  margin-top: 1rem;
+}

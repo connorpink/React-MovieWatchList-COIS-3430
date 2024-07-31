@@ -89,7 +89,7 @@ function Entry() {
             <p>Movie watched: {timesWatched} times</p>
             <p>Movie Last Watched: {lastWatched} </p>
             <button className="styledButton" onClick={() => handleWatched()}>Watched Again</button>
-            <button className="styledButton" onClick={() => handleSubmit()}>Save Changes</button>
+            <button className="styledButton topMargin" onClick={() => handleSubmit()}>Save Changes</button>
             <form onSubmit={handleDelete}>
               <button className="lastButton" type="submit">Remove Entry from List</button>
 
