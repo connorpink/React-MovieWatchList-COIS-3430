@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import NavBar from "../NavBar";
-import CompletedWatchListCard from '../CompletedWatchListCard';
 import "../../styles/MovieGrid.css";
+import MovieGrid from "../MovieGrid";
 
 
 function CompletedWatchList() {
@@ -30,16 +30,27 @@ function CompletedWatchList() {
                     return null;
                 }
                 const movieData = await movieResponse.json();
-                return {
-                    watchData: element,
-                    movieData: movieData[0]
-                };
+                console.log(element);
+                console.log(movieData);
+                return { ...movieData[0],
+                    additionalInfo: [
+                    { name: 'Rating', details: element.rating },
+                    { name: 'Date Initially watched', details: element.date_initially_watched },
+                    { name: 'Date Last Watched', details: element.date_last_watched },
+                    { name: 'Times Watched', details: element.times_watched },
+                    { name: 'Notes', details: element.notes }
+                ]};
             }));
 
             setCompletedWatchListData(movieList.filter(Boolean))
         } catch (error) {
             setError(error);
         }
+    }
+
+    const link = {
+        name: 'Edit Entry',
+        location: '/entry'
     }
 
     useEffect(() => {
@@ -57,11 +68,7 @@ function CompletedWatchList() {
                 ) : completedWatchListData === null ? (
                     <p>Loading...</p>
                 ) : (
-                    <section className="MovieGrid">
-                        {completedWatchListData.map((entry, index) => (
-                            <CompletedWatchListCard key={index} entry={entry.watchData} movie={entry.movieData} />
-                        ))}
-                    </section>
+                    <MovieGrid movies={completedWatchListData} link={link}/>
                 )}
             </main>
         </>
