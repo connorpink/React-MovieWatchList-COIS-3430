@@ -38,9 +38,10 @@ function Entry() {
     patchRequest.body = new URLSearchParams({ 'rating': rating })
     fetch(`https://loki.trentu.ca/~connorpink/3430/assn/cois-3430-2024su-a2-BigBeill/api/completedwatchlist/entries/${movie.movieID}/rating`, patchRequest)
     const additionalTimesWatched = timesWatched - parseInt(movie.additionalInfo[3].details,10)
-    console.log(additionalTimesWatched);
-    patchRequest.body = new URLSearchParams({ 'times-watched': additionalTimesWatched })
-    fetch(`https://loki.trentu.ca/~connorpink/3430/assn/cois-3430-2024su-a2-BigBeill/api/completedwatchlist/entries/${movie.movieID}/times-watched`, patchRequest)
+    if (additionalTimesWatched != 0) {
+      patchRequest.body = new URLSearchParams({ 'times-watched': additionalTimesWatched })
+      fetch(`https://loki.trentu.ca/~connorpink/3430/assn/cois-3430-2024su-a2-BigBeill/api/completedwatchlist/entries/${movie.movieID}/times-watched`, patchRequest)
+    }
     patchRequest.body = new URLSearchParams({ 'notes': notes })
     fetch(`https://loki.trentu.ca/~connorpink/3430/assn/cois-3430-2024su-a2-BigBeill/api/completedwatchlist/entries/${movie.movieID}/notes`, patchRequest)
   }
