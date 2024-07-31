@@ -11,7 +11,19 @@ function UserPin(props) {
     return (
         <>
 
-            <h3>First movie watched: </h3><MovieCard movie={movie} />
+            <h3>First movie watched: </h3>
+            {movie && (
+                <div className="MovieCard detailed">
+
+                    {/* general information that every movie card should display*/}
+                    <h2>{movie.title}</h2>
+                    <p>{new Date(movie.release_date).toLocaleDateString()} | {Math.round(movie.vote_average * 10) / 10}/10 | {movie.runtime} minutes</p>
+                    <p>{movie.description}</p>
+                    <p><b>Vote Count: </b>{movie.vote_count}</p>
+
+                    <p><b>Date movie was first watched: </b>{stats.date_of_first_Movie_Watched}</p>
+                </div>
+            )}
 
             <h3>Other Stats</h3>
             <ul>
