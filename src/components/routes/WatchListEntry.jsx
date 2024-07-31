@@ -2,7 +2,7 @@ import { useState } from "react";
 import NavBar from "../NavBar";
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import '../../styles/MovieCard.css';
+import '../../styles/extra.css';
 
 
 import MovieCard from '../MovieCard';
@@ -147,55 +147,59 @@ function WatchListEntry() {
                 <NavBar />
             </header>
             <main>
-                <MovieCard movie={movie} />
-                <div className="MovieCard">
-                    {movie && (
-                        <>
+                <div className="watchListEntry">
+
+                    <MovieCard movie={movie} />
+                    <div className="MovieCard">
+                        {movie && (
+                            <>
 
 
-                            <form onSubmit={handleSubmit}>
-                                <label >Current Watch priority: </label>
-                                <select value={priority} onChange={(event) => setPriority(event.target.value)}>
-                                    {[...Array(10).keys()].map((rating) => <option key={rating + 1} value={rating + 1}>{rating + 1}</option>)}
+                                <form onSubmit={handleSubmit}>
+                                    <label >Current priority: </label>
+                                    <select value={priority} onChange={(event) => setPriority(event.target.value)}>
+                                        {[...Array(10).keys()].map((rating) => <option key={rating + 1} value={rating + 1}>{rating + 1}</option>)}
 
-                                </select>
-                                <button type="submit">Update Priority</button>
+                                    </select>
+                                    <button type="submit">Update Priority</button>
 
-                            </form>
-                            <form onSubmit={handleNotesSubmit}>
+                                </form>
+                                <form onSubmit={handleNotesSubmit}>
 
-                                <p>notes: </p>
+                                    <p>notes: </p>
 
-                                <textarea value={notes} onChange={(event) => setNotes(event.target.value)}></textarea>
-                                <button type="submit">Update Notes</button>
+                                    <textarea value={notes} onChange={(event) => setNotes(event.target.value)}></textarea>
+                                    <button type="submit">Update Notes</button>
 
-                            </form>
-                            <br />
-                            <form onSubmit={handleWatched}>
-                                <label >Provide a rating </label>
-                                <select value={rating} onChange={(event) => setRating(event.target.value)}>
-                                    {[...Array(10).keys()].map((rating) => <option key={rating + 1} value={rating + 1}>{rating + 1}</option>)}
+                                </form>
+                                <br />
+                                <form onSubmit={handleWatched}>
+                                    <label >Provide a rating </label>
+                                    <select value={rating} onChange={(event) => setRating(event.target.value)}>
+                                        {[...Array(10).keys()].map((rating) => <option key={rating + 1} value={rating + 1}>{rating + 1}</option>)}
 
-                                </select>
-                                <button type="submit">Mark as Watched</button>
+                                    </select>
+                                    <button type="submit">Mark as Watched</button>
 
-                            </form>
-                            <br />
-                            <form onSubmit={handleDelete}>
-                                <button type="submit">Remove Entry from List</button>
+                                </form>
+                                <br />
+                                <form onSubmit={handleDelete}>
+                                    <button type="submit">Remove Entry from List</button>
 
-                            </form>
-                            {error ? (
-                                <span style={{ color: "red" }}>Error: {error.message}</span>
-                            ) : successMessage ? (
-                                <span style={{ color: "green" }}>{successMessage}</span>
-                            ) : (
-                                <span />
-                            )}
+                                </form>
+                                {error ? (
+                                    <span style={{ color: "red" }}>Error: {error.message}</span>
+                                ) : successMessage ? (
+                                    <span style={{ color: "green" }}>{successMessage}</span>
+                                ) : (
+                                    <span />
+                                )}
 
-                        </>
-                    )}
+                            </>
+                        )}
+                    </div>
                 </div>
+
             </main >
         </>
     );

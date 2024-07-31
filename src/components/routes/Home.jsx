@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import NavBar from "../NavBar";
 import MovieGrid from '../MovieGrid';
 import SearchBar from "../searchBar";
+// import "extra.css" from "../../styles/extra.css"
 
 function Home() {
 
@@ -11,12 +12,12 @@ function Home() {
 
     useEffect(() => {
         fetch('https://loki.trentu.ca/~connorpink/3430/assn/cois-3430-2024su-a2-BigBeill/api/movies')
-        .then(response => response.json())
-        .then(data => {
-            setMovieData(data)
-            setFilteredMovies(data)
-        })
-        .catch(error => setError(error));
+            .then(response => response.json())
+            .then(data => {
+                setMovieData(data)
+                setFilteredMovies(data)
+            })
+            .catch(error => setError(error));
     }, []);
 
     return (
@@ -25,7 +26,10 @@ function Home() {
                 <NavBar />
             </header>
             <main>
-                <h1>Home Page</h1>
+                <div className="center">
+                    <h1>Home Page</h1>
+
+                </div>
 
                 {error ? (
                     <p>Error: {error.message}</p>

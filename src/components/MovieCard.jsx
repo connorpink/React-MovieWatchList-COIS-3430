@@ -19,10 +19,10 @@ link: {
 }
 */
 
-function MovieCard({movie, link}) {
+function MovieCard({ movie, link }) {
 
     return (
-        <div className="MovieCard">
+        <div className="MovieCard" style={{ width: "auto" }}>
 
             {/* general information that every movie card should display*/}
             <h2>{movie.title}</h2>
@@ -41,7 +41,8 @@ function MovieCard({movie, link}) {
                 <Link to={`/movie/${movie.movieID}`} state={movie}> Movie Details </Link>
 
                 {/* optional additional link at bottom of card */}
-                {link && <Link to={`${link.location}/${movie.movieID}`} state={movie}> {link.name} </Link> }
+                {link && <Link to={`${link.location}/${movie.movieID}`} state={movie}> {link.name} </Link>}
+
             </div>
         </div>
     );

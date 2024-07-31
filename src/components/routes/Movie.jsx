@@ -2,9 +2,18 @@ import { useState } from "react";
 import NavBar from "../NavBar";
 import { useLocation, useParams } from 'react-router-dom';
 
+import '../../styles/UserCard.css';
+
+import MovieCard from "../MovieCard";
+
 function Movie() {
   const location = useLocation();
   const movie = location.state;
+  movie.additionalInfo = [
+    {
+      name: "vote count", details: movie.vote_count
+    }
+  ]
   const params = useParams();
 
   const [error, setError] = useState(null);
@@ -35,32 +44,31 @@ function Movie() {
     }
   }
 
+  const button = {
+    name: "Quick add to watch list",
+    location: ""
+  }
   return (
     <>
       <header>
         <NavBar />
       </header>
       <main>
-        {/* display the title, release_date, vote_average, vote_count, runtime and description of a movie. */}
-        <div className="movie-container">
+        <div className="UserCard">
 
           {movie && (
             <>
-              <h1>{movie.title}</h1>
-              <p><span>Movie ID:</span> {params.movieId}</p>
-              <p><span>Release Date:</span> {movie.release_date}</p>
-              <p><span>Vote Average:</span> {Math.round(movie.vote_average * 10) / 10}/10</p>
-              <p><span>Vote Count:</span> {movie.vote_count}</p>
-              <p><span>runtime:</span> {movie.runtime} minutes</p>
-              <p>{movie.description}</p>
-              <button onClick={quickAdd}>quick add to watch list</button>
-              {error ? (
-                <span>Error: {error.message}</span>
-              ) : successMessage ? (
-                <span>{successMessage}</span>
-              ) : (
-                <span />
-              )}
+              <MovieCard movie={movie} button={button} />
+              <div className="buttonContainer">
+                <button onClick={quickAdd}>quick add to watch list</button>
+                {error ? (
+                  <span>Error: {error.message}</span>
+                ) : successMessage ? (
+                  <span>{successMessage}</span>
+                ) : (
+                  <span />
+                )}
+              </div>
             </>
           )}
 

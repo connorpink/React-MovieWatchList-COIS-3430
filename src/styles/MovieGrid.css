@@ -1,6 +1,6 @@
 .MovieGrid {
-  margin-top: 1.5rem;
+  margin: 1.5rem;
   display: grid;
-  gap: 1em;
+  gap: 3em;
   grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
 }
