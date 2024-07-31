@@ -32,6 +32,7 @@ main {
   display: flex;
   flex-direction: column;
 }
+
 .buttonContainer button {
   background-color: lightblue;
   border-radius: 0.15rem;
@@ -39,8 +40,39 @@ main {
   border: 0.09rem solid black;
   width: fit-content;
 }
+
 .center {
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+.settingsPage {
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  margin-top: 1.5rem;
+  gap: .6rem;
+}
+
+button {
+  width: 100%;
+  border: 0.09rem solid black;
+  background-color: lightblue;
+  padding: 0.06rem;
+  border-radius: 0.15rem;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+}
+
+button:hover{
+  cursor: pointer;
+}
+
+.lastButton{
+  position: absolute;
+  width: calc(100% - 2em);
+  bottom: 1em;
+  left:1em;
 }
